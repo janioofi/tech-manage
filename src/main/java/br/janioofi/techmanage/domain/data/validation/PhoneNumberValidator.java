@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, String> {
 
-    private static final String PHONE_NUMBER_PATTERN = "^\\+\\d{1,3} \\d{1,4} \\d{4,10}$";
+    private static final String PHONE_NUMBER_PATTERN = "^\\+\\d{1,3} \\d{1,2} \\d{4,5}-\\d{4}$";
 
     @Override
     public void initialize(PhoneNumber constraintAnnotation) {
