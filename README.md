@@ -5,9 +5,8 @@ TechManage é um sistema de gerenciamento de usuários construído utilizando Sp
 
 ## Requisitos
 
-- JDK 21.0.6
+- JDK 21
 - Maven 3.6+
-- GraalVM
 
 ## Instalação
 
