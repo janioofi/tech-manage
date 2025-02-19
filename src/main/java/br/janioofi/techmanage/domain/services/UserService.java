@@ -47,7 +47,7 @@ public class UserService {
                 data.setUserType(dto.userType());
                 return repository.save(data);
                 }).orElseThrow(() -> new RecordNotFoundException(USER_NOT_FOUND + id));
-        return toDto(repository.save(user));
+        return toDto(user);
     }
 
     public void deleteUser(Long id) {
