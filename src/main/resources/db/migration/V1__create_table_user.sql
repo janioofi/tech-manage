@@ -4,7 +4,7 @@ CREATE TABLE tb_user
     full_name  VARCHAR(255)                            NOT NULL,
     email      VARCHAR(255)                            NOT NULL,
     phone      VARCHAR(255)                            NOT NULL,
-    birth_date TIMESTAMP                               NOT NULL,
+    birth_date DATE                                    NOT NULL,
     user_type  VARCHAR(255)                            NOT NULL,
     CONSTRAINT pk_tb_user PRIMARY KEY (id)
 );
