@@ -8,6 +8,7 @@ import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -54,5 +55,17 @@ public class ApplicationControllerAdvice {
     public String handleBusinessException(BusinessException ex){
         log.error(ex.getMessage());
         return ex.getMessage();
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ValidationErrors httpMessageException(HttpMessageNotReadableException ex, HttpServletRequest request){
+        ValidationErrors field = new ValidationErrors();
+        field.setPath(request.getRequestURI());
+        field.setStatus(HttpStatus.BAD_REQUEST.value());
+        field.setError("Validation Error");
+        field.addErrors("User Type", ex.getMessage());
+        log.error(field.toString());
+        return field;
     }
 }

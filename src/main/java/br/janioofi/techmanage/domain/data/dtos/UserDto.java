@@ -2,6 +2,7 @@ package br.janioofi.techmanage.domain.data.dtos;
 
 import br.janioofi.techmanage.domain.data.enums.UserType;
 import br.janioofi.techmanage.domain.data.validation.PhoneNumber;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,6 +13,6 @@ public record UserDto(
         @NotNull String fullName,
         @NotNull @Email String email,
         @NotNull @PhoneNumber String phone,
-        @NotNull Date birthDate,
+        @NotNull @JsonFormat(pattern = "yyyy-MM-dd") Date birthDate,
         @NotNull UserType userType) {
 }
