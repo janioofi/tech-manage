@@ -57,17 +57,12 @@ public class UserService {
 
     private void validateCreateUser(UserDto userDto) {
         Optional<User> user = repository.findByEmail(userDto.email());
-        if (user.isPresent() && user.get().getEmail() != null) {
-            throw new BusinessException(EMAIL_ALREADY_EXISTS);
-        }
+        if (user.isPresent()) throw new BusinessException(EMAIL_ALREADY_EXISTS);
     }
 
     private void validateUpdateUserEmail(String email, Long id){
         Optional<User> user = repository.findByEmail(email);
-        if(user.isEmpty()) return;
-        if (!user.get().getId().equals(id)) {
-            throw new BusinessException(EMAIL_ALREADY_EXISTS);
-        }
+        if (!user.get().getId().equals(id)) throw new BusinessException(EMAIL_ALREADY_EXISTS);
     }
 
     private UserDto toDto(User user) {
