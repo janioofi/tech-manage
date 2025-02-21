@@ -62,7 +62,7 @@ public class UserService {
 
     private void validateUpdateUserEmail(String email, Long id){
         Optional<User> user = repository.findByEmail(email);
-        if (!user.get().getId().equals(id)) throw new BusinessException(EMAIL_ALREADY_EXISTS);
+        if (user.isPresent() && !user.get().getId().equals(id)) throw new BusinessException(EMAIL_ALREADY_EXISTS);
     }
 
     private UserDto toDto(User user) {

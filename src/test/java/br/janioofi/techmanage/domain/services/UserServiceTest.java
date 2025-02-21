@@ -93,7 +93,7 @@ class UserServiceTest {
         assertNotNull(updatedUser);
         assertEquals(userDto.email(), updatedUser.email());
         verify(userRepository, times(1)).findById(1L);
-        verify(userRepository, times(2)).save(any(User.class)); // Adjusted to reflect two save calls
+        verify(userRepository, times(1)).save(any(User.class));
     }
 
     @Test
